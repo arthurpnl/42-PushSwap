@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:45:44 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/07 15:54:56 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/08 12:36:11 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,20 @@ int is_valid_number(char *str)
 
     i = 0;
     is_it_valid = 0;
+    if(str[0] == '\0')
+        return (0);
     while (str[i])
     {
-        if ((str[i] == '-' || str[i] == '+') && (str[i + 1] >= '0' && str[i + 1] <= '9'))
+        if (str[0] == '+' && str[i + 1] >= '0' && str[i + 1] <= '9')
             is_it_valid = 1;
         else
-            is_it_valid = 0;
-        i++;
+            return (0);
+        if (str[0] == '-' && str[i + 1] >= '0' && str[i + 1] <= '9')
+            is_it_valid = 1;
+        else
+            return (0);
+        if (str[i] >= '0' && str[i] <= '9')
+            is_it_valid = 1;
     }
     return (is_it_valid);
 }
