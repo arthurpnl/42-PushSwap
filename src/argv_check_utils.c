@@ -6,13 +6,15 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:45:44 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/10 14:06:06 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:10:12 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
+#include <stdlib.h>
+
 
 int is_valid_number(char *str)
 {
@@ -50,26 +52,40 @@ int is_there_space(char *str)
     return (0);
 }
 
-t_node *parse_argument(int  argc, char **argv)
+t_node *parse_argument(char *test_case)
 {
-    if (is_there_space(argv[1]) == 1 )
-    ft_split(str, ' ');
+    char    **numbers;
+    int i;
+    int value;
+
+    i = 0;
+    if (is_there_space(test_case) == 1)
+        numbers = ft_split(test_case, ' ');
+    while(numbers[i])
+    {
+        if (!is_valid_number(numbers[i]))
+        {
+            write(2, "Error\n", 6);
+            exit(1);
+        }
+        value = ft_atoi(numbers[i]);
+        i++;
+
+        // need to stack the values into chained list
+        // how ??? 
+    }
+    return (*numbers);
 }
-    
+
 /*
 int main(void)
 {
-    int i;
-
-    i = 0;
-    char *test_case[] = {
-        "42", "43 234 535  345", "32234", "", NULL
-    };
-    while (test_case[i])
-    {
-        printf("Test \"%s\" → %d\n", test_case[i], is_there_space(test_case[i]));
-        i++;
-    }
+    char *test_case = "43 9234 23 5205 252";
+    parse_argument(test_case);
     return (0);
 }
 */
+
+
+
+
