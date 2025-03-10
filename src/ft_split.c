@@ -6,11 +6,14 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:16:02 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/10 15:16:14 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/10 15:27:20 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <limits.h>
+#include <stdlib.h>
 
 static int	ft_len_words(const char *str, char sep)
 {

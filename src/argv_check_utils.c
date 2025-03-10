@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:45:44 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/10 15:10:12 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/10 17:58:39 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,15 @@ int is_there_space(char *str)
 
 t_node *parse_argument(char *test_case)
 {
+    t_list  *stack_a;
+    t_list  *tmp;
     char    **numbers;
     int i;
     int value;
 
     i = 0;
+    stack_a = NULL;
+    tmp = NULL;
     if (is_there_space(test_case) == 1)
         numbers = ft_split(test_case, ' ');
     while(numbers[i])
@@ -69,18 +73,22 @@ t_node *parse_argument(char *test_case)
             exit(1);
         }
         value = ft_atoi(numbers[i]);
+        tmp = ft_lst_new(value);
+        tmp->next = stack_a;
+        stack_a = tmp;
         i++;
+        
 
         // need to stack the values into chained list
         // how ??? 
     }
-    return (*numbers);
+    return (stack_a);
 }
 
 /*
 int main(void)
 {
-    char *test_case = "43 9234 23 5205 252";
+    char *test_case = "43 92 23 5205 252";
     parse_argument(test_case);
     return (0);
 }

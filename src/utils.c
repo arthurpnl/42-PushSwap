@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   calloc.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 15:17:19 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/10 15:27:30 by arpenel          ###   ########.fr       */
+/*   Created: 2025/03/10 16:45:15 by arpenel           #+#    #+#             */
+/*   Updated: 2025/03/10 16:48:54 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <limits.h>
-#include <stdlib.h>
+#include "push_swap.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstnew(int value)
 {
-	char	*str;
+	t_list	*new;
 
-	str = s;
-	while (n)
-	{
-		*str++ = 0;
-		n--;
-	}
-}
-
-void	*ft_calloc(size_t nmemb, size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
-		return (ptr);
-	ft_bzero(ptr, size * nmemb);
-	return (ptr);
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->next = NULL;
+	return (new);
 }
