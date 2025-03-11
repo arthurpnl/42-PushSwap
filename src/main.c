@@ -6,11 +6,11 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:35:11 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/07 15:37:22 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/11 14:58:37 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.c"
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
