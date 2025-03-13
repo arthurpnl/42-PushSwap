@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:45:44 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/13 11:11:13 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:56:30 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ int	validate_and_convert(char *test_case)
 	return (ft_atoi(test_case));
 }
 
-
+/*
 int	main(void)
 {
-	char	*test_case = "3294";
+	char	*test_case = "3294 3459s2 4";
 	t_list	*stack_a = parse_argument(test_case);
 	if(test_case[0] == '\0')
 		return (1);
 	print_stack(stack_a);
 	return (0);
 }
+*/

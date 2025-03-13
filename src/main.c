@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:35:11 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/11 14:58:37 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/13 18:52:30 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc == 1)
-		return (0);
-	if (argc == 2)
-		parse_argument(argc, **argv);
-	
+	t_list	*stack_a;
+
+	stack_a = NULL;
+	stack_a = control_args(argc, argv);
+	print_stack(stack_a);
 	return (0);
 }

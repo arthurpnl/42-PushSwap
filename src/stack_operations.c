@@ -6,13 +6,13 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:29:00 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/13 11:15:38 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/13 14:56:02 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack(t_list *stack_a)
+void	print_stack(t_list *stack_a) // will be removed in the future
 {
 	while (stack_a)
 	{
