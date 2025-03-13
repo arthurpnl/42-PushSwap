@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:29:00 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/11 15:31:19 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/13 11:15:38 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,36 @@ t_list	*ft_lstnew(int value)
 	new->value = value;
 	new->next = NULL;
 	return (new);
+}
+
+void	add_to_stack(t_list **stack, int value)
+{
+	t_list	*tmp;
+	
+	tmp = ft_lstnew(value);
+	if (!tmp)
+	{
+		write(2, "Error/n", 6);
+		exit(1);
+	}
+	tmp->next = *stack;
+	*stack = tmp;
+}
+
+t_list	*fill_stack(char **numbers)
+{
+	t_list *stack_a;
+	int	i;
+	int	value;
+
+	stack_a = NULL;
+	i = 0;
+	value = 0;
+	while (numbers[i])
+	{
+		value = validate_and_convert(numbers[i]);
+		add_to_stack(&stack_a, value);
+		i++;
+	}
+	return (stack_a);
 }
