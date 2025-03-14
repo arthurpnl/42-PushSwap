@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:29:24 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/13 11:21:32 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/13 18:53:52 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void	print_stack(t_list *stack_a);
 char	**split_arguments(char *test_case);
 t_list	*fill_stack(char **numbers);
 int	validate_and_convert(char *test_case);
-
+void	add_to_stack(t_list **stack, int value);
+t_list	*control_args(int	argc, char **argv);
 #endif
