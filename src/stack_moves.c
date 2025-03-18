@@ -88,5 +88,23 @@ void	ra(t_list **stack_a)
 	first_node->next = NULL;
 }
 
+void	rb(t_list **stack_b)
+{
+	t_list	*first_node;
+	t_list	*last_node;
+
+	if (!(*stack_b)
+		return ;
+
+	last_node = *stack_b;
+	while (last_node && last_node->next)
+		last_node = last_node->next;
+
+	first_node = *stack_b;
+	*stack_b = first_node->next;
+	last_node->next = first_node;
+	first_node->next = NULL;
+}
+
 
 
