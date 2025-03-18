@@ -42,8 +42,8 @@ void    sb(t_list **stack_b)
 
 void    ss(t_list **stack_a, t_list **stack_b)
 {
-    sa(*stack_a);
-    sb(*stack_b);
+    sa(stack_a);
+    sb(stack_b);
 }
 
 void	pa(t_list **stack_a, t_list **stack_b)
@@ -104,6 +104,12 @@ void	rb(t_list **stack_b)
 	*stack_b = first_node->next;
 	last_node->next = first_node;
 	first_node->next = NULL;
+}
+
+void	rr(t_list **stack_a, t_list **stack_b)
+{
+	ra(stack_a);
+	rb(stack_b);
 }
 
 
