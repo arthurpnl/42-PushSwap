@@ -93,7 +93,7 @@ void	rb(t_list **stack_b)
 	t_list	*first_node;
 	t_list	*last_node;
 
-	if (!(*stack_b)
+	if (!(*stack_b) || !(*stack_b)->next)
 		return ;
 
 	last_node = *stack_b;
@@ -111,6 +111,27 @@ void	rr(t_list **stack_a, t_list **stack_b)
 	ra(stack_a);
 	rb(stack_b);
 }
+
+void	rra(t_list **stack_a)
+{
+	t_list	*first_node;
+	t_list	*last_node;
+
+	if (!*stack_a || !(*stack_a)->next)
+		return;
+
+	while (last_node->next)
+		last_node = last_node->next;
+	first_node = *stack_a;
+	while (first_node->next != last_node)
+		first_node = first_node->next;
+	last_node->next = *stack_a;
+	first_node->next = NULL;
+	*stack_a = last_node;
+}
+
+
+
 
 
 
