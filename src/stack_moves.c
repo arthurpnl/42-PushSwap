@@ -62,8 +62,9 @@ void	pb(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*temp_node;
 
-    if (!(*stack_a)
-    	return;
+	if (!(*stack_a))
+		return;
+
 	temp_node = *stack_a;
 	temp_node->next = *stack_b;
     *stack_b = temp_node;

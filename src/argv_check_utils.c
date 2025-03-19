@@ -51,10 +51,7 @@ int	is_there_space(char *str)
 int	validate_and_convert(char *test_case)
 {
 	if (!is_valid_number(test_case))
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		perror_and_exit();
 	return (ft_atoi(test_case));
 }
 

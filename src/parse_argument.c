@@ -28,12 +28,12 @@ t_list	*control_args(int	argc, char **argv)
 	while (i < argc)
 	{
 		if (!is_valid_number(argv[i]))
-		{
-			write (2, "Error\n", 6);
-			exit(1);
-		}
+			perror_and_exit();
 		value = ft_atoi(argv[i]);
-		add_to_stack(&stack_a, value);
+		if (!value_exist_already(&stack_a, value))
+			add_to_stack(&stack_a, value);
+		else
+			perror_and_exit();
 		i++;
 	}
 	return(stack_a);
@@ -70,5 +70,6 @@ char	**split_arguments(char *test_case)
 	else
 		return (handle_single_argument(test_case));
 }
+
 
 

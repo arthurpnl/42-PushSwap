@@ -39,12 +39,23 @@ void	add_to_stack(t_list **stack, int value)
 	
 	tmp = ft_lstnew(value);
 	if (!tmp)
-	{
-		write(2, "Error/n", 6);
-		exit(1);
-	}
+		perror_and_exit();
 	tmp->next = *stack;
 	*stack = tmp;
+}
+
+int	value_exist_already (t_list **stack_a, int value)
+{
+	t_list *current;
+
+	current = *stack_a;
+	while (current)
+	{
+		if (current->value == value)
+			return (1);
+		current = current->next;
+	}
+	return (0);
 }
 
 t_list	*fill_stack(char **numbers)
@@ -59,7 +70,10 @@ t_list	*fill_stack(char **numbers)
 	while (numbers[i])
 	{
 		value = validate_and_convert(numbers[i]);
-		add_to_stack(&stack_a, value);
+		if (!value_exist_already(&stack_a, value))
+			add_to_stack(&stack_a, value);
+		else
+			perror_and_exit();
 		i++;
 	}
 	return (stack_a);

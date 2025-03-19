@@ -20,7 +20,5 @@ int	main(int argc, char **argv)
 	stack_a = control_args(argc, argv);
 	//stack_b = NULL;//
 	print_stack(stack_a);
-	sa(&stack_a);
-	print_stack(stack_a);
 	return (0);
 }

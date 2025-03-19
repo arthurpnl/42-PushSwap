@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 static int	ft_len_words(const char *str, char sep)
 {
@@ -98,26 +99,28 @@ char	**ft_split(const char *s, char sep)
 int	ft_atoi(const char *nptr)
 {
 	int	i;
-	int	neg;
-	int	res;
+	int	sign;
+	long	res;
 
 	i = 0;
-	neg = 1;
+	sign = 1;
 	res = 0;
 	while ((nptr[i] >= 9 && nptr[i] <= 13) || (nptr[i] == 32))
 		i++;
 	if (nptr[i] == '-' || nptr[i] == '+')
 	{
 		if (nptr[i] == '-')
-			neg *= -1;
+			sign *= -1;
 		i++;
 	}
 	while (nptr[i] >= 48 && nptr[i] <= 57)
 	{
 		res = res * 10 + (nptr[i] - 48);
+		if ((sign == 1 && res > INT_MAX) || (sign == -1 && sign * res < INT_MIN))
+			perror_and_exit();
 		i++;
 	}
-	return (res * neg);
+	return ((int)res * sign);
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -141,4 +144,10 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (ptr);
 	ft_bzero(ptr, size * nmemb);
 	return (ptr);
+}
+
+void	perror_and_exit()
+{
+	write(2, "Error\n", 6);
+	exit (1);
 }
