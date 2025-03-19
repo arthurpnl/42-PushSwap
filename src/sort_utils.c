@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void    assign_index(t_list **stack_a);
+void    assign_index(t_list **stack_a)
 {
     t_list    *current;
     t_list    *compare;
@@ -57,7 +57,7 @@ int    min_value_b(t_list **stack_b)
     int    min;
     t_list    *current;
 
-    if (!(*stack_b)
+    if (!(*stack_b))
         return (-1);
 
     min = (*stack_b)->value;
