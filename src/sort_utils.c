@@ -71,6 +71,23 @@ int    min_value_b(t_list **stack_b)
     return (min);
 }
 
+int    count_stack_a(t_list **stack_a)
+{
+    int    count;
+    t_list *current;
+
+    if (!(*stack_a)
+        return (0);
+
+    current = *stack_a;
+    while(current)
+    {
+        count++;
+        current = current->next;
+    }
+    return (count);
+}
+
 /*
 void    find_target_pos(t_list **stack_b, int value)
 {
