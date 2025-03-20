@@ -15,10 +15,11 @@
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a; 
-	//t_list	*stack_b;//
+	t_list	*stack_b;
 
+	stack_b = NULL;
 	stack_a = control_args(argc, argv);
-	//stack_b = NULL;//
+	assign_index(&stack_a);
 	print_stack(stack_a);
 	return (0);
 }

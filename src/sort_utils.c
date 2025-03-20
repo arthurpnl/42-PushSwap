@@ -12,17 +12,17 @@
 
 #include "push_swap.h"
 
-void    assign_index(t_list **stack_a)
+void    assign_index(t_list **stack)
 {
     t_list    *current;
     t_list    *compare;
     int        count;
 
-    current = *stack_a;
+    current = *stack;
     while (current)
     {
         count = 0;
-        compare = *stack_a;
+        compare = *stack;
         while(compare)
         {
             if (current->value > compare->value)
@@ -34,15 +34,15 @@ void    assign_index(t_list **stack_a)
     }
 }
 
-int    max_value_b(t_list **stack_b)
+int    max_value(t_list **stack)
 {
     int    max;
     t_list    *current;
-    if (!(*stack_b))
+    if (!(*stack))
         return (-1);
 
-    max = stack_b->value;
-    current = stack_b->next;
+    max = stack->value;
+    current = stack->next;
     while (current)
     {
         if (current->value > max)
@@ -52,16 +52,16 @@ int    max_value_b(t_list **stack_b)
     return (max);
 }
 
-int    min_value_b(t_list **stack_b)
+int    min_value(t_list **stack)
 {
     int    min;
     t_list    *current;
 
-    if (!(*stack_b))
+    if (!(*stack))
         return (-1);
 
-    min = (*stack_b)->value;
-    current = stack_b->next;
+    min = (*stack)->value;
+    current = stack->next;
     while (current)
     {
         if (current->value < min)
@@ -71,15 +71,16 @@ int    min_value_b(t_list **stack_b)
     return (min);
 }
 
-int    count_stack_a(t_list **stack_a)
+int    count_stack_lenght(t_list **stack)
 {
     int    count;
     t_list *current;
 
-    if (!(*stack_a)
+    count = 0;
+    if (!(*stack || !stack)
         return (0);
 
-    current = *stack_a;
+    current = *stack;
     while(current)
     {
         count++;
@@ -88,14 +89,53 @@ int    count_stack_a(t_list **stack_a)
     return (count);
 }
 
-/*
-void    find_target_pos(t_list **stack_b, int value)
-{
+
+int find_target_position(t_list **stack_b, int value_to_push) {
     t_list *current;
+    t_list *target_node = NULL;
+    int index = 0;
+    int target_index = 0;
+    int max_value;
 
-    current =
-    if (!(*stack_b)
-        return (0);
+    if (!(*stack_b))
+        return (0); // Si STACK_B est vide, on place directement en haut
 
+    max_value = max_value_b(stack_b); // Récupère la valeur max de STACK_B
+    current = *stack_b;
+
+    // Parcourir STACK_B pour trouver la closest smaller value
+    while (current)
+    {
+        if (current->value < value_to_push) // Si la valeur actuelle est plus petite que value_to_push
+        {
+            // Vérifier si c'est la plus grande valeur plus petite que value_to_push
+            if (!target_node || current->value > target_node->value)
+            {
+                target_node = current;
+                target_index = index;
+            }
+        }
+        current = current->next;
+        index++;
+    }
+
+    // Si aucun plus petit nombre trouvé, on prend le max_value comme target
+    if (!target_node)
+    {
+        current = *stack_b;
+        index = 0;
+        while (current->value != max_value) // On cherche où se trouve le max
+        {
+            current = current->next;
+            index++;
+        }
+        return index; // Placer après le maximum (au-dessus, pas en dessous)
+    }
+
+    return target_index; // Retourne l'index où insérer value_to_push pour respecter l'ordre décroissant
 }
- */
+
+
+// trouver la meilleure position
+// calculer le cout de push/good positions
+// push le nombre le moins couteux
