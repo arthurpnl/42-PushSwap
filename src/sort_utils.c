@@ -34,12 +34,15 @@ void    assign_index(t_list **stack)
     }
 }
 
-int    max_value(t_list **stack)
+int    find_max_value(t_list **stack)
 {
     int    max;
     t_list    *current;
-    if (!(*stack))
+
+    if (!stack || !(*stack))
+    {
         return (-1);
+    }
 
     max = (*stack)->value;
     current = (*stack)->next;
@@ -90,54 +93,44 @@ int    count_stack_lenght(t_list **stack)
 }
 
 
-int find_target_node(t_list **stack_b, int value_to_push) {
+void find_target_node(t_list *a_node, t_list **stack_b)
+{
     t_list *current;
-    t_list *target_node = NULL;
-    int index = 0;
-    int max_value;
+    t_list *best_target;
+    int    closest_smaller;
 
-    if (!(*stack_b))
-        return (0); // Si STACK_B est vide, on place directement en haut
-
-    max_value = max_value(stack_b); // Récupère la valeur max de STACK_B
     current = *stack_b;
-
-    // Parcourir STACK_B pour trouver la closest smaller value
+    best_target = NULL;
+    closest_smaller = INT_MIN;
     while (current)
     {
-        if (current->value < value_to_push) // Si la valeur actuelle est plus petite que value_to_push
+        if (current->value < a_node->value && current->value > closest_smaller)
         {
-            // Vérifier si c'est la plus grande valeur plus petite que value_to_push
-            if (!target_node || current->value > target_node->value)
-                target_node = current;
+            closest_smaller = current->value;
+            best_target = current;
         }
         current = current->next;
-        index++;
     }
-
-    // Si aucun plus petit nombre trouvé, on prend le max_value comme target
-    if (!target_node)
-    	return (find_max_position(stack_b, max_value));
-
-    return index; // Retourne l'index où insérer value_to_push pour respecter l'ordre décroissant
+    if (!best_target)
+        find_max_position(a_node, stack_b);
+    else
+        a_node->target = best_target;
 }
 
-int	find_max_position(t_list **stack_b, int max_value)
+void	find_max_position(t_list *a_node, t_list **stack_b)
 {
 	t_list *current;
-	int	index;
+	int    max_value;
 
 	current = (*stack_b);
-	index = 0;
+	max_value = find_max_value(stack_b);
 	while (current->value != max_value)
-	{
 		current = current->next;
-		index++;
-	}
-	return index;
+	a_node->target = current;
 }
+
 
 
 // trouver la meilleure position
 // calculer le cout de push/good positions
-// push le nombre le moins couteux
+// push le nombre le moins couteux au dessus de son target node
