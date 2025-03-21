@@ -71,11 +71,11 @@ void    send_first_two(t_list **stack_a, t_list **stack_b);
 
 // Sort Utils //
 void    assign_index(t_list **stack_a);
-int    find_max_value(t_list **stack);
-int    find_min_value(t_list **stack);
-void    set_index(t_list **stack);
+int    find_max_value(t_list *stack);
+int    find_min_value(t_list *stack);
+void    set_index(t_list *stack);
 void    set_median(t_list *stack);
-int    count_stack_lenght(t_list **stack);
+int    stack_lenght(t_list *stack);
 void	find_max_position(t_list *a_node, t_list **stack_b);
 void    find_target_node(t_list *a_node, t_list **stack_b);
 
