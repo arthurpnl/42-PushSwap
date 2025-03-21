@@ -36,7 +36,38 @@ void    assign_index(t_list **stack)
 }
 */
 
- */
+void    set_index(t_list **stack)
+{
+    int    index;
+    t_list *current;
+
+    index = 0;
+    current = *stack;
+    while (current)
+    {
+        current->index = index;
+        current = current->next;
+        index++;
+    }
+}
+
+void    set_median(t_list *stack)
+{
+    int    stack_size;
+    int    i;
+
+    stack_size = count_stack_lenght(&stack);
+    i = 0;
+    while (stack)
+    {
+        if(i <= stack_size / 2)
+            stack->median = 1;
+        else
+            stack->median = 2;
+        stack = stack->next;
+        i++;
+    }
+}
 
 int    find_max_value(t_list **stack)
 {
@@ -132,8 +163,6 @@ void	find_max_position(t_list *a_node, t_list **stack_b)
 		current = current->next;
 	a_node->target = current;
 }
-
-
 
 // trouver la meilleure position
 // calculer le cout de push/good positions
