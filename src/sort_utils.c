@@ -41,8 +41,8 @@ int    max_value(t_list **stack)
     if (!(*stack))
         return (-1);
 
-    max = stack->value;
-    current = stack->next;
+    max = (*stack)->value;
+    current = (*stack)->next;
     while (current)
     {
         if (current->value > max)
@@ -61,7 +61,7 @@ int    min_value(t_list **stack)
         return (-1);
 
     min = (*stack)->value;
-    current = stack->next;
+    current = (*stack)->next;
     while (current)
     {
         if (current->value < min)
@@ -77,7 +77,7 @@ int    count_stack_lenght(t_list **stack)
     t_list *current;
 
     count = 0;
-    if (!(*stack || !stack)
+    if (!(*stack || !stack))
         return (0);
 
     current = *stack;
@@ -90,7 +90,7 @@ int    count_stack_lenght(t_list **stack)
 }
 
 
-int find_target_position(t_list **stack_b, int value_to_push) {
+int find_target_node(t_list **stack_b, int value_to_push) {
     t_list *current;
     t_list *target_node = NULL;
     int index = 0;
@@ -100,7 +100,7 @@ int find_target_position(t_list **stack_b, int value_to_push) {
     if (!(*stack_b))
         return (0); // Si STACK_B est vide, on place directement en haut
 
-    max_value = max_value_b(stack_b); // Récupère la valeur max de STACK_B
+    max_value = max_value(stack_b); // Récupère la valeur max de STACK_B
     current = *stack_b;
 
     // Parcourir STACK_B pour trouver la closest smaller value
