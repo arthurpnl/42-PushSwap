@@ -94,7 +94,6 @@ int find_target_node(t_list **stack_b, int value_to_push) {
     t_list *current;
     t_list *target_node = NULL;
     int index = 0;
-    int target_index = 0;
     int max_value;
 
     if (!(*stack_b))
@@ -110,10 +109,7 @@ int find_target_node(t_list **stack_b, int value_to_push) {
         {
             // Vérifier si c'est la plus grande valeur plus petite que value_to_push
             if (!target_node || current->value > target_node->value)
-            {
                 target_node = current;
-                target_index = index;
-            }
         }
         current = current->next;
         index++;
@@ -121,18 +117,24 @@ int find_target_node(t_list **stack_b, int value_to_push) {
 
     // Si aucun plus petit nombre trouvé, on prend le max_value comme target
     if (!target_node)
-    {
-        current = *stack_b;
-        index = 0;
-        while (current->value != max_value) // On cherche où se trouve le max
-        {
-            current = current->next;
-            index++;
-        }
-        return index; // Placer après le maximum (au-dessus, pas en dessous)
-    }
+    	return (find_max_position(stack_b, max_value));
 
-    return target_index; // Retourne l'index où insérer value_to_push pour respecter l'ordre décroissant
+    return index; // Retourne l'index où insérer value_to_push pour respecter l'ordre décroissant
+}
+
+int	find_max_position(t_list **stack_b, int max_value)
+{
+	t_list *current;
+	int	index;
+
+	current = (*stack_b);
+	index = 0;
+	while (current->value != max_value)
+	{
+		current = current->next;
+		index++;
+	}
+	return index;
 }
 
 
