@@ -18,12 +18,19 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <limits.h>
+#include <stdbool.h>
 
 typedef struct s_list
 {
-    int value;
+    int    value;
+    int    index;
+    int    cost;
+    int    median;
     struct s_list *next;
+    struct s_list *target;
+    bool    cheapest;
 }   t_list;
+
 
 // Parse Argument //
 t_list *parse_argument(char *test_case);
@@ -57,6 +64,22 @@ void	rr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+
+// Algorithm Functions //
+
+void    send_first_two(t_list **stack_a, t_list **stack_b);
+
+// Sort Utils //
+void    assign_index(t_list **stack_a);
+int    find_max_value(t_list **stack);
+int    find_min_value(t_list **stack);
+void    set_index(t_list **stack);
+void    set_median(t_list *stack);
+int    count_stack_lenght(t_list **stack);
+void	find_max_position(t_list *a_node, t_list **stack_b);
+void    find_target_node(t_list *a_node, t_list **stack_b);
+
+
 
 // Utils //
 char    **ft_split(const char *s, char sep);
