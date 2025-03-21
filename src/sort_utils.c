@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+/*
 void    assign_index(t_list **stack)
 {
     t_list    *current;
@@ -33,6 +34,9 @@ void    assign_index(t_list **stack)
         current = current->next;
     }
 }
+*/
+
+ */
 
 int    find_max_value(t_list **stack)
 {
@@ -55,7 +59,7 @@ int    find_max_value(t_list **stack)
     return (max);
 }
 
-int    min_value(t_list **stack)
+int    find_min_value(t_list **stack)
 {
     int    min;
     t_list    *current;
@@ -111,7 +115,7 @@ void find_target_node(t_list *a_node, t_list **stack_b)
         }
         current = current->next;
     }
-    if (!best_target)
+    if (!best_target || a_node->value < find_min_value(stack_b) || a_node->value > find_max_value(stack_b))
         find_max_position(a_node, stack_b);
     else
         a_node->target = best_target;
