@@ -42,8 +42,12 @@ int main(int argc, char **argv)
     stack_a = control_args(argc, argv);
     if (!stack_a)
         return (1);
-    sort_stack(&stack_a, &stack_b); // La fonction sort_stack s'occupe déjà de faire les premiers pb
-
+    if (argc == 3)
+        simple_sort_2(&stack_a);
+    else if (argc == 4)
+        simple_sort_3(&stack_a);
+    else
+        sort_stack(&stack_a, &stack_b); // La fonction sort_stack s'occupe déjà de faire les premiers pb
     print_stacks(stack_a, stack_b);
     return (0);
 }

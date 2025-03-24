@@ -24,6 +24,12 @@ void	push_2(t_list **stack_a, t_list **stack_b)
 	}
 }
 
+void    simple_sort_2(t_list **stack_a)
+{
+    if ((*stack_a)->value > (*stack_a)->next->value)
+        sa(stack_a);
+}
+
 void    simple_sort_3(t_list **stack_a)
 {
     int first = (*stack_a)->value;
@@ -245,29 +251,57 @@ void	rotate_b_max(t_list **stack_b)
 		while((*stack_b)->value != max_value)
 			rrb(stack_b);
 }
-/*
-void	rotate_a_max(t_list **stack_a)
+
+void rotate_a_target_position(t_list **stack_a, int value_to_insert)
 {
-	t_list *current;
-	int	max_value;
+    t_list *current = *stack_a;
+    t_list *target = NULL;
+    t_list *min_node = *stack_a;
 
-	if (!stack_a || !(*stack_a))
-		return ;
-
-	max_value = stack_lenght(*stack_a);
-	current = (*stack_a);
-	while (current && current->value != max_value)
-		current = current->next;
-	if (current->median == 1)
-	{
-		while ((*stack_a) != max_value)
-			rra(stack_a);
-	}
-	else
-		while((*stack_a) != max_value)
-			ra(stack_a);
+    while (current)
+    {
+        if (current->value > value_to_insert)
+            if (!target || current->value < target->value)
+                target = current;
+        if (current->value < min_node->value)
+            min_node = current;
+        current = current->next;
+    }
+    if (!target)
+        target = min_node;
+    while (*stack_a != target)
+    {
+        if (target->median)
+            ra(stack_a);
+        else
+            rra(stack_a);
+    }
 }
-*/
+
+void	final_sort_stack_a(t_list **stack_a)
+{
+	t_list	*current;
+	t_list	*min;
+
+	current = (*stack_a);
+	min = current;
+	while (current)
+	{
+    	if (current->value < min->value)
+        	min = current;
+    	current = current->next;
+	}
+	while (*stack_a != min)
+	{
+    	if (min->median == 1)
+        	ra(stack_a);
+    	else
+        	rra(stack_a);
+}
+
+
+}
+
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	push_2(stack_a, stack_b);
@@ -289,9 +323,11 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 	simple_sort_3(stack_a);
 	while (*stack_b)
 	{
-		rotate_b_max(stack_b);
+		init_index_n_median(*stack_a, *stack_b);
+		rotate_a_target_position(stack_a, (*stack_b)->value);
 		pa(stack_a, stack_b);
 	}
+	final_sort_stack_a(stack_a);
 }
 
 

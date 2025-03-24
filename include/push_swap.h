@@ -72,14 +72,19 @@ void	find_max_position(t_list *a_node, t_list **stack_b);
 void    find_target_node(t_list *a_node, t_list **stack_b);
 void    calculate_cost(t_list *stack_a, t_list *stack_b);
 void	find_cheapest_node(t_list *stack_a);
+void	sort_stack(t_list **stack_a, t_list **stack_b);
+void 	do_rotation(t_list **stack_a, t_list **stack_b, t_list *cheapest);
+void     do_rotation_opposite(t_list **stack_a, t_list **stack_b, t_list *cheapest);
+void    simple_sort_3(t_list **stack_a);
+void    simple_sort_2(t_list **stack_a);
 
 // Sort Utils //
-void    assign_index(t_list **stack_a);
+int stack_lenght(t_list *stack);
 int    find_max_value(t_list *stack);
 int    find_min_value(t_list *stack);
 void    set_index(t_list *stack);
 void    set_median(t_list *stack);
-int    stack_lenght(t_list *stack);
+void    init_index_n_median(t_list *stack_a, t_list *stack_b);
 
 
 
