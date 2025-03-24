@@ -12,30 +12,17 @@
 
 #include "push_swap.h"
 
-/*
-void    assign_index(t_list **stack)
+int stack_lenght(t_list *stack)
 {
-    t_list    *current;
-    t_list    *compare;
-    int        count;
-
-    current = *stack;
-    while (current)
-
+    int count = 0;
+    while (stack)
     {
-        count = 0;
-        compare = *stack;
-        while(compare)
-        {
-            if (current->value > compare->value)
-                count++;
-            compare = compare->next;
-        }
-        current->index = count;
-        current = current->next;
+        count++;
+        stack = stack->next;
     }
+    return count;
 }
-*/
+
 
 void    set_index(t_list *stack)
 {
@@ -58,7 +45,7 @@ void    set_median(t_list *stack)
     int    stack_size;
     int    i;
 
-    stack_size = count_stack_lenght(stack);
+    stack_size = stack_lenght(stack);
     i = 0;
     while (stack)
     {
@@ -117,23 +104,7 @@ int    find_min_value(t_list *stack)
     return (min);
 }
 
-int    stack_lenght(t_list *stack);
-{
-    int count;
-    t_list *current;
 
-    count = 0;
-    if (!stack)
-        return (0);
-
-    current = stack;
-    while (current)
-    {
-        count++;
-        current = current->next;
-    }
-    return (count);
-}
 
 
 // trouver la meilleure position

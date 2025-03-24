@@ -48,28 +48,30 @@ void    ss(t_list **stack_a, t_list **stack_b) // sa and sb at the same time.
 
 void	pa(t_list **stack_a, t_list **stack_b) // push a - take the first element at the top of b and put it at the top of a. Do nothing if b is empty.
 {
-  	t_list	*temp_node;
+	t_list	*temp_node;
 
 	if (!(*stack_b))
-		return ;
-    temp_node = *stack_b;
-    temp_node->next = *stack_a;
-	*stack_a = temp_node;
-    *stack_b = (*stack_b)->next;
+		return;
+
+	temp_node = *stack_b;           // On stocke le premier élément de stack_b
+	*stack_b = (*stack_b)->next;    // On avance stack_b AVANT de toucher à next
+	temp_node->next = *stack_a;     // On attache l'ancien top de B au top de A
+	*stack_a = temp_node;           // On met temp_node en haut de A
 }
+
 
 void	pb(t_list **stack_a, t_list **stack_b) // push b - take the first element at the top of a and put it at the top of b. Do nothing if a is empty.
 {
-	t_list	*temp_node;
+	t_list	*temp;
 
-	if (!(*stack_a))
+	if (!*stack_a)
 		return;
-
-	temp_node = *stack_a;
-	temp_node->next = *stack_b;
-    *stack_b = temp_node;
-    *stack_a = (*stack_a)->next;
+	temp = *stack_a;
+	*stack_a = (*stack_a)->next;  // avance d'abord stack_a
+	temp->next = *stack_b;        // puis rattache à stack_b
+	*stack_b = temp;
 }
+
 
 void	ra(t_list **stack_a) // rotate a - shift up all elements of stack a by 1. The first element becomes the last one.
 {
