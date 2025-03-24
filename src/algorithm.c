@@ -26,30 +26,26 @@ void	push_2(t_list **stack_a, t_list **stack_b)
 
 void    simple_sort_3(t_list **stack_a)
 {
-    int    first;
-    int    second;
-    int    third;
+    int first = (*stack_a)->value;
+    int second = (*stack_a)->next->value;
+    int third = (*stack_a)->next->next->value;
 
-    first = (*stack_a)->value;
-    second = (*stack_a)->next->value;
-    third = (*stack_a)->next->next->value;
-
-    if (first > second && second > third && first > third)
+    if (first > second && second < third && third > first)
+        sa(stack_a);
+    else if (first > second && second > third)
     {
         sa(stack_a);
         rra(stack_a);
     }
-    else if (first > second && second < third && first > third)
+    else if (first > second && second < third && third < first)
         ra(stack_a);
-    else if (first < second && second > third && first > third)
-        rra(stack_a);
-    else if (first > second && second < third && first > third)
-        sa(stack_a);
-    else if (first < second && second > third && first < third)
+    else if (first < second && second > third && third > first)
     {
         sa(stack_a);
         ra(stack_a);
     }
+    else if (first < second && second > third && third < first)
+        rra(stack_a);
 }
 
 void    send_first_two(t_list **stack_a, t_list **stack_b)
@@ -163,11 +159,11 @@ void	do_rotation(t_list **stack_a, t_list **stack_b, t_list *cheapest)
 {
 	if (cheapest->median == 1 && cheapest->target->median == 1)
 	{
-		while (*stack_a != cheapest || *stack_b != cheapest->target)
+		while (*stack_a != cheapest && *stack_b != cheapest->target)
 			rr(stack_a, stack_b);
 		while (*stack_a != cheapest)
 			ra(stack_a);
-		while (*stack_b != cheapest)
+		while (*stack_b != cheapest->target)
 			rb(stack_b);
 	}
 	else if (cheapest->median == 2 && cheapest->target->median == 2)
@@ -187,14 +183,14 @@ void	do_rotation_opposite(t_list **stack_a, t_list **stack_b, t_list *cheapest)
 	{
 		while (*stack_a != cheapest)
 			ra(stack_a);
-		while (*stack_b != cheapest)
+		while (*stack_b != cheapest->target)
 			rrb(stack_b);
 	}
 	else if (cheapest->median == 2 && cheapest->target->median == 1)
 	{
 		while (*stack_a != cheapest)
 			rra(stack_a);
-		while (*stack_b != cheapest)
+		while (*stack_b != cheapest->target)
 			rb(stack_b);
 	}
 }
@@ -226,6 +222,52 @@ while (current)
 
 }
 
+void	rotate_b_max(t_list **stack_b)
+{
+	t_list	*current;
+	int	max_value;
+
+	if (!(*stack_b) || !stack_b)
+		return ;
+	max_value = find_max_value(*stack_b);
+	current = *stack_b;
+
+	while (current && current->value != max_value)
+		current = current->next;
+	if (!current)
+		return ;
+	if (current->median == 1)
+	{
+		while ((*stack_b)->value != max_value)
+			rb(stack_b);
+	}
+	else
+		while((*stack_b)->value != max_value)
+			rrb(stack_b);
+}
+/*
+void	rotate_a_max(t_list **stack_a)
+{
+	t_list *current;
+	int	max_value;
+
+	if (!stack_a || !(*stack_a))
+		return ;
+
+	max_value = stack_lenght(*stack_a);
+	current = (*stack_a);
+	while (current && current->value != max_value)
+		current = current->next;
+	if (current->median == 1)
+	{
+		while ((*stack_a) != max_value)
+			rra(stack_a);
+	}
+	else
+		while((*stack_a) != max_value)
+			ra(stack_a);
+}
+*/
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
 	push_2(stack_a, stack_b);
@@ -245,6 +287,11 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 		do_cheapest_move(stack_a, stack_b);
 	}
 	simple_sort_3(stack_a);
+	while (*stack_b)
+	{
+		rotate_b_max(stack_b);
+		pa(stack_a, stack_b);
+	}
 }
 
 
