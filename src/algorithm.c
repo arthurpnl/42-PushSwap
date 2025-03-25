@@ -17,11 +17,13 @@ void	push_2(t_list **stack_a, t_list **stack_b)
 	int	lenght;
 
 	lenght = stack_lenght(*stack_a);
-	if (lenght >= 5)
+	if (lenght > 5)
 	{
 		pb(stack_a, stack_b);
 		pb(stack_a, stack_b);
 	}
+	else
+		pb(stack_a, stack_b);
 }
 
 void    simple_sort_2(t_list **stack_a)

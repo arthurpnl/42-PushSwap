@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h> // pour printf
+#include <stdio.h>
+
 
 void	print_stacks(t_list *stack_a, t_list *stack_b)
 {
@@ -34,6 +35,7 @@ void	print_stacks(t_list *stack_a, t_list *stack_b)
     }
 }
 
+
 int main(int argc, char **argv)
 {
     t_list *stack_a;
@@ -42,13 +44,15 @@ int main(int argc, char **argv)
     stack_a = control_args(argc, argv);
     if (!stack_a)
         return (1);
+    if (argc == 2)
+        return (0);
     if (argc == 3)
         simple_sort_2(&stack_a);
     else if (argc == 4)
         simple_sort_3(&stack_a);
     else
         sort_stack(&stack_a, &stack_b); // La fonction sort_stack s'occupe déjà de faire les premiers pb
-    print_stacks(stack_a, stack_b);
+    //print_stacks(stack_a, stack_b);//
     return (0);
 }
 
