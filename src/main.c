@@ -40,19 +40,21 @@ int main(int argc, char **argv)
 {
     t_list *stack_a;
     t_list *stack_b = NULL;
+    int stack_len;
 
     stack_a = control_args(argc, argv);
     if (!stack_a)
         return (1);
-    if (argc == 2)
-        return (0);
-    if (argc == 3)
+
+    stack_len = stack_lenght(stack_a);
+	if (stack_len == 1)
+		return (0);
+    else if (stack_len == 2)
         simple_sort_2(&stack_a);
-    else if (argc == 4)
+    else if (stack_len == 3)
         simple_sort_3(&stack_a);
     else
-        sort_stack(&stack_a, &stack_b); // La fonction sort_stack s'occupe déjà de faire les premiers pb
-    //print_stacks(stack_a, stack_b);//
+		sort_stack(&stack_a, &stack_b);
     return (0);
 }
 

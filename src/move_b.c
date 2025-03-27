@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "push_swap.h"
 
 void    sb(t_list **stack_b) // swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements).
 {

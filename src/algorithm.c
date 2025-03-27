@@ -6,24 +6,27 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:27 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/19 15:50:32 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:32:18 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_2(t_list **stack_a, t_list **stack_b)
+void	push_initial_elements(t_list **stack_a, t_list **stack_b)
 {
 	int	lenght;
 
 	lenght = stack_lenght(*stack_a);
-	if (lenght > 5)
+	if (lenght > 3)
 	{
-		pb(stack_a, stack_b);
-		pb(stack_a, stack_b);
+		if (lenght > 5)
+		{
+			pb(stack_a, stack_b);
+			pb(stack_a, stack_b);
+		}
+		else
+			pb(stack_a, stack_b);
 	}
-	else
-		pb(stack_a, stack_b);
 }
 
 void    simple_sort_2(t_list **stack_a)
@@ -32,27 +35,27 @@ void    simple_sort_2(t_list **stack_a)
         sa(stack_a);
 }
 
-void    simple_sort_3(t_list **stack_a)
+void simple_sort_3(t_list **stack_a)
 {
-    int first = (*stack_a)->value;
-    int second = (*stack_a)->next->value;
-    int third = (*stack_a)->next->next->value;
+    int a = (*stack_a)->value;
+    int b = (*stack_a)->next->value;
+    int c = (*stack_a)->next->next->value;
 
-    if (first > second && second < third && third > first)
+    if (a > b && b < c && a < c)
         sa(stack_a);
-    else if (first > second && second > third)
+    else if (a > b && b > c)
     {
         sa(stack_a);
         rra(stack_a);
     }
-    else if (first > second && second < third && third < first)
+    else if (a > b && b < c && a > c)
         ra(stack_a);
-    else if (first < second && second > third && third > first)
+    else if (a < b && b > c && a < c)
     {
         sa(stack_a);
         ra(stack_a);
     }
-    else if (first < second && second > third && third < first)
+    else if (a < b && b > c && a > c)
         rra(stack_a);
 }
 
@@ -280,33 +283,43 @@ void rotate_a_target_position(t_list **stack_a, int value_to_insert)
     }
 }
 
-void	final_sort_stack_a(t_list **stack_a)
+void final_sort_stack_a(t_list **stack_a)
 {
-	t_list	*current;
-	t_list	*min;
+    t_list *current = *stack_a;
+    t_list *min = *stack_a;
+    int min_pos = 0;
+    int current_pos = 0;
 
-	current = (*stack_a);
-	min = current;
-	while (current)
-	{
-    	if (current->value < min->value)
-        	min = current;
-    	current = current->next;
-	}
-	while (*stack_a != min)
-	{
-    	if (min->median == 1)
-        	ra(stack_a);
-    	else
-        	rra(stack_a);
-}
+    // Trouve la position exacte du minimum
+    while (current)
+    {
+        if (current->value < min->value)
+        {
+            min = current;
+            min_pos = current_pos;
+        }
+        current = current->next;
+        current_pos++;
+    }
 
-
+    int size = stack_lenght(*stack_a);
+    // Si minimum est dans la première moitié, utilise RA
+    if (min_pos <= size / 2)
+    {
+        while (*stack_a != min)
+            ra(stack_a);
+    }
+    // Sinon utilise RRA
+    else
+    {
+        while (*stack_a != min)
+            rra(stack_a);
+    }
 }
 
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	push_2(stack_a, stack_b);
+	push_initial_elements(stack_a, stack_b);
 	while(stack_lenght(*stack_a) > 3)
 	{
 		init_index_n_median(*stack_a, *stack_b);
@@ -331,14 +344,3 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 	}
 	final_sort_stack_a(stack_a);
 }
-
-
-
-
-
-
-
-
-
-
-

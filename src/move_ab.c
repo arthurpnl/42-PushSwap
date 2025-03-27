@@ -11,25 +11,25 @@
 /* ************************************************************************** */
 
 
-#include "pushswap.h"
+#include "push_swap.h"
 
 void    ss(t_list **stack_a, t_list **stack_b) // sa and sb at the same time.
 {
-    sa(stack_a);
-    sb(stack_b);
+    swap_a(stack_a);
+    swap_b(stack_b);
     printf("ss\n");
 }
 
 void	rr(t_list **stack_a, t_list **stack_b) // ra and rb at the same time.
 {
-    ra(stack_a);
-    rb(stack_b);
+    rotate_a(stack_a);
+    rotate_b(stack_b);
     printf("rr\n");
 }
 
 void	rrr(t_list **stack_a, t_list **stack_b) // rra and rrb at the same time.
 {
-    rra(stack_a);
-    rrb(stack_b);
+    reverse_r_a(stack_a);
+    reverse_r_b(stack_b);
     printf("rrr\n");
 }

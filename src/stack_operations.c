@@ -60,21 +60,24 @@ int	value_exist_already (t_list **stack_a, int value)
 
 t_list	*fill_stack(char **numbers)
 {
-	t_list *stack_a;
-	int	i;
-	int	value;
+    t_list *stack_a = NULL;
+    t_list *new_node;
+    t_list *current = NULL;
+    int	i = 0;
+    int	value;
 
-	stack_a = NULL;
-	i = 0;
-	value = 0;
-	while (numbers[i])
-	{
-		value = validate_and_convert(numbers[i]);
-		if (!value_exist_already(&stack_a, value))
-			add_to_stack(&stack_a, value);
-		else
-			perror_and_exit();
-		i++;
-	}
-	return (stack_a);
+    while (numbers[i])
+    {
+        value = validate_and_convert(numbers[i]);
+        if (value_exist_already(&stack_a, value))
+            perror_and_exit();
+        new_node = ft_lstnew(value);
+        if (!stack_a)
+            stack_a = new_node;
+        else
+            current->next = new_node;
+        current = new_node;
+        i++;
+    }
+    return (stack_a);
 }

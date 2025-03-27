@@ -41,7 +41,7 @@ void	pa(t_list **stack_a, t_list **stack_b) // push a - take the first element a
     printf("pa\n");
 }
 
-void	ra(t_list **stack_a) // rotate a - shift up all elements of stack a by 1. The first element becomes the last one.
+void	ra(t_list **stack_a) // rotate a - shift up all elements of stack a by 1. The first element becomes the  last one.
 {
     t_list *first_node;
     t_list	*last_node;
