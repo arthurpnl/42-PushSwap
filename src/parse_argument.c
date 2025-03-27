@@ -39,16 +39,22 @@ t_list	*control_args(int	argc, char **argv)
 	return(stack_a);
 }
 
-t_list	*parse_argument(char *test_case) // replace test_case by argv[1]
+t_list *parse_argument(char *test_case)
 {
-	char	**numbers;
+	char    **numbers;
+	t_list  *stack;
 
-	if(!test_case || test_case[0] == '\0')
+	if (!test_case || test_case[0] == '\0')
 		return (NULL);
+
 	numbers = split_arguments(test_case);
 	if (!numbers)
 		return (NULL);
-	return (fill_stack(numbers));
+
+	stack = fill_stack(numbers);
+	free_split(numbers); // Libère le tableau après l’avoir utilisé
+
+	return (stack);
 }
 
 char	**handle_single_argument(char	*test_case)

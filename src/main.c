@@ -55,6 +55,8 @@ int main(int argc, char **argv)
         simple_sort_3(&stack_a);
     else
 		sort_stack(&stack_a, &stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
     return (0);
 }
 

@@ -96,8 +96,9 @@ void    set_index(t_list *stack);
 void    set_median(t_list *stack);
 void    init_index_n_median(t_list *stack_a, t_list *stack_b);
 
-
-
+// Free utils //
+void free_stack(t_list *stack);
+void free_split(char **split);
 
 // Utils //
 char    **ft_split(const char *s, char sep);
