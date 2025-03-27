@@ -51,19 +51,22 @@ t_list	*ft_lstnew(int value);
 void	add_to_stack(t_list **stack, int value);
 int	value_exist_already (t_list **stack_a, int value);
 
-
-// Stack moves //
+// Move_A //
 void    sa(t_list   **stack_a);
-void    sb(t_list **stack_b);
-void    ss(t_list **stack_a, t_list **stack_b);
 void	pa(t_list **stack_a, t_list **stack_b);
-void	pb(t_list **stack_a, t_list **stack_b);
 void	ra(t_list **stack_a);
-void	rb(t_list **stack_b);
-void	rr(t_list **stack_a, t_list **stack_b);
 void	rra(t_list **stack_a);
-void	rrb(t_list **stack_b);
+
+// Move_AB //
+void    ss(t_list **stack_a, t_list **stack_b);
+void	rr( **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
+
+// Move_B //
+void    sb(t_list **stack_b);
+void	pb(t_list **stack_a, t_list **stack_b);
+void	rb(t_list **stack_b);
+void	rrb(t_list **stack_b);
 
 // Algorithm Functions //
 
