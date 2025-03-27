@@ -67,6 +67,14 @@ void	pb(t_list **stack_a, t_list **stack_b);
 void	rb(t_list **stack_b);
 void	rrb(t_list **stack_b);
 
+// Stack Moves //
+void    swap_a(t_list   **stack_a);
+void    swap_b(t_list	**stack_b);
+void	rotate_a(t_list **stack_a);
+void	rotate_b(t_list **stack_b);
+void	reverse_r_a(t_list **stack_a);
+void	reverse_r_b(t_list **stack_b);
+
 // Algorithm Functions //
 
 void    send_first_two(t_list **stack_a, t_list **stack_b);
