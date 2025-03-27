@@ -37,7 +37,6 @@ t_list *parse_argument(char *test_case);
 t_list	*control_args(int	argc, char **argv);
 char	**handle_single_argument(char	*test_case);
 char	**split_arguments(char *test_case);
-char	**split_arguments(char *test_case);
 
 // Argv Check Utils //
 int is_valid_number(char *str);
@@ -59,7 +58,7 @@ void	rra(t_list **stack_a);
 
 // Move_AB //
 void    ss(t_list **stack_a, t_list **stack_b);
-void	rr( **stack_a, t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
 // Move_B //
