@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:29:00 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/13 14:56:02 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/23 16:38:34 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,23 @@ t_list	*ft_lstnew(int value)
 	return (new);
 }
 
-void	add_to_stack(t_list **stack, int value)
+void    add_to_stack(t_list **stack, int value)
 {
-	t_list	*tmp;
-	
-	tmp = ft_lstnew(value);
-	if (!tmp)
-		perror_and_exit();
-	tmp->next = *stack;
-	*stack = tmp;
+    t_list    *tmp;
+    t_list *tmp2;
+    
+    tmp = ft_lstnew(value);
+    if (!*stack) {
+        *stack = tmp;
+        return;
+    }
+    tmp2 = *stack;
+    if (!tmp)
+        perror_and_exit();
+    while (tmp2->next) {
+        tmp2 = tmp2->next;
+    }
+    tmp2->next = tmp;
 }
 
 int	value_exist_already (t_list **stack_a, int value)

@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 15:50:27 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/27 16:32:18 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/23 18:10:29 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void find_target_node(t_list *a_node, t_list **stack_b)
         }
         current = current->next;
     }
+	if (!stack_b || !*stack_b)
+	{
+		a_node->target = NULL;
+		return;
+	}
     if (!best_target || a_node->value < find_min_value(*stack_b) || a_node->value > find_max_value(*stack_b))
         find_max_position(a_node, stack_b);
     else
@@ -164,7 +169,6 @@ void	find_cheapest_node(t_list *stack)
 	if (cheapest_node)
 		cheapest_node->cheapest = true;
 }
-///////
 
 void	do_rotation(t_list **stack_a, t_list **stack_b, t_list *cheapest)
 {
@@ -212,7 +216,7 @@ void	do_cheapest_move(t_list **stack_a, t_list **stack_b)
 	t_list *cheapest = NULL;
 
 	current = *stack_a;
-while (current)
+	while (current)
 	{
 		if (current->cheapest == true)
 		{

@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:45:15 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/11 16:25:57 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/23 13:21:43 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 void	perror_and_exit()
 {
-	write(2, "Error\n", 6);
+	write(1, "Error\n", 6);
 	exit (1);
 }

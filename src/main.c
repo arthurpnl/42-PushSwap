@@ -6,14 +6,14 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:35:11 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/15 15:24:01 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/23 16:58:55 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-
+/*
 void	print_stacks(t_list *stack_a, t_list *stack_b)
 {
     printf("\n--- STACK A ---\n");
@@ -33,7 +33,7 @@ void	print_stacks(t_list *stack_a, t_list *stack_b)
             stack_b->median, stack_b->cheapest);
         stack_b = stack_b->next;
     }
-}
+}*/
 
 
 int main(int argc, char **argv)
