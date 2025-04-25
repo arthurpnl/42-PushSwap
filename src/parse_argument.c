@@ -6,22 +6,22 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:29:58 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/13 18:50:57 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/25 15:12:41 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*control_args(int	argc, char **argv)
+t_list	*control_args(int argc, char **argv)
 {
-	t_list *stack_a;
-	int	i;
-	int	value;
-	
+	t_list	*stack_a;
+	int		i;
+	int		value;
+
 	stack_a = NULL;
 	i = 1;
 	value = 0;
-	if(argc < 2)
+	if (argc < 2)
 		return (NULL);
 	if (argc == 2 && is_there_space(argv[1]))
 		return (parse_argument(argv[1]));
@@ -36,28 +36,25 @@ t_list	*control_args(int	argc, char **argv)
 			perror_and_exit();
 		i++;
 	}
-	return(stack_a);
+	return (stack_a);
 }
 
-t_list *parse_argument(char *test_case)
+t_list	*parse_argument(char *test_case)
 {
-	char    **numbers;
-	t_list  *stack;
+	char	**numbers;
+	t_list	*stack;
 
 	if (!test_case || test_case[0] == '\0')
 		return (NULL);
-
 	numbers = split_arguments(test_case);
 	if (!numbers)
 		return (NULL);
-
 	stack = fill_stack(numbers);
-	free_split(numbers); // Libère le tableau après l’avoir utilisé
-
+	free_split(numbers);
 	return (stack);
 }
 
-char	**handle_single_argument(char	*test_case)
+char	**handle_single_argument(char *test_case)
 {
 	char	**numbers;
 
@@ -76,6 +73,3 @@ char	**split_arguments(char *test_case)
 	else
 		return (handle_single_argument(test_case));
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:29:24 by arpenel           #+#    #+#             */
-/*   Updated: 2025/03/15 15:18:46 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/25 16:12:11 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int is_there_space(char *str);
 int	validate_and_convert(char *test_case);
 
 // Stack Operations //
-void	print_stack(t_list *stack_a);
 t_list	*fill_stack(char **numbers);
 t_list	*ft_lstnew(int value);
 void	add_to_stack(t_list **stack, int value);
@@ -67,31 +66,51 @@ void	pb(t_list **stack_a, t_list **stack_b);
 void	rb(t_list **stack_b);
 void	rrb(t_list **stack_b);
 
-// Stack Moves //
+// Stack Moves A//
 void    swap_a(t_list   **stack_a);
-void    swap_b(t_list	**stack_b);
 void	rotate_a(t_list **stack_a);
-void	rotate_b(t_list **stack_b);
 void	reverse_r_a(t_list **stack_a);
+
+
+// Stack Moves B//
+void    swap_b(t_list	**stack_b);
+void	rotate_b(t_list **stack_b);
 void	reverse_r_b(t_list **stack_b);
 
-// Algorithm Functions //
-
+// Init Utils //
+void	push_initial_elements(t_list **stack_a, t_list **stack_b);
 void    send_first_two(t_list **stack_a, t_list **stack_b);
-void	find_max_position(t_list *a_node, t_list **stack_b);
-void    find_target_node(t_list *a_node, t_list **stack_b);
+void	init_index_n_median(t_list *stack_a, t_list *stack_b);
+
+// Cost Utils //
 void    calculate_cost(t_list *stack_a, t_list *stack_b);
-void	find_cheapest_node(t_list *stack_a);
-void	sort_stack(t_list **stack_a, t_list **stack_b);
-void 	do_rotation(t_list **stack_a, t_list **stack_b, t_list *cheapest);
-void     do_rotation_opposite(t_list **stack_a, t_list **stack_b, t_list *cheapest);
-void    simple_sort_3(t_list **stack_a);
+void	find_cheapest_node(t_list *stack);
+
+// Simple Sort //
 void    simple_sort_2(t_list **stack_a);
+void simple_sort_3(t_list **stack_a);
+
+// Rotation // 
+void	do_rotation(t_list **stack_a, t_list **stack_b, t_list *cheapest);
+void	do_rotation_opposite(t_list **stack_a, t_list **stack_b, t_list *cheapest);
+void	do_cheapest_move(t_list **stack_a, t_list **stack_b);
+
+// Targeting //
+void find_target_node(t_list *a_node, t_list **stack_b);
+void	find_max_position(t_list *a_node, t_list **stack_b);
+
+// Final Sort //
+
+void	rotate_b_max(t_list **stack_b);
+void    rotate_a_target_position(t_list **stack_a, int value_to_insert);
+void    final_sort_stack_a(t_list **stack_a);
+void	sort_stack(t_list **stack_a, t_list **stack_b);
+
 
 // Sort Utils //
-int stack_lenght(t_list *stack);
-int    find_max_value(t_list *stack);
-int    find_min_value(t_list *stack);
+int     stack_lenght(t_list *stack);
+int     find_max_value(t_list *stack);
+int     find_min_value(t_list *stack);
 void    set_index(t_list *stack);
 void    set_median(t_list *stack);
 void    init_index_n_median(t_list *stack_a, t_list *stack_b);
@@ -100,12 +119,12 @@ void    init_index_n_median(t_list *stack_a, t_list *stack_b);
 void free_stack(t_list *stack);
 void free_split(char **split);
 
-// Utils //
+// Split //
 char    **ft_split(const char *s, char sep);
+
+// Utils //
 int    ft_atoi(const char *nptr);
 void    *ft_calloc(size_t nmemb, size_t size);
 void    perror_and_exit();
-
-
 
 #endif
