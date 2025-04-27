@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-void	find_target_node(t_list *a_node, t_list **stack_b)
+t_list	*best_target_node(t_list *a_node, t_list *stack_b)
 {
 	t_list	*current;
 	t_list	*best_target;
 	int		closest_smaller;
 
-	current = *stack_b;
+	current = stack_b;
 	best_target = NULL;
 	closest_smaller = INT_MIN;
 	while (current)
@@ -30,11 +30,19 @@ void	find_target_node(t_list *a_node, t_list **stack_b)
 		}
 		current = current->next;
 	}
+	return (best_target);
+}
+
+void	find_target_node(t_list *a_node, t_list **stack_b)
+{
+	t_list	*best_target;
+
 	if (!stack_b || !*stack_b)
 	{
 		a_node->target = NULL;
 		return ;
 	}
+	best_target = best_target_node(a_node, *stack_b);
 	if (!best_target || a_node->value < find_min_value(*stack_b)
 		|| a_node->value > find_max_value(*stack_b))
 		find_max_position(a_node, stack_b);

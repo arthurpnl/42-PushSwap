@@ -96,6 +96,7 @@ void	do_rotation_opposite(t_list **stack_a, t_list **stack_b, t_list *cheapest);
 void	do_cheapest_move(t_list **stack_a, t_list **stack_b);
 
 // Targeting //
+t_list	*best_target_node(t_list *a_node, t_list *stack_b);
 void find_target_node(t_list *a_node, t_list **stack_b);
 void	find_max_position(t_list *a_node, t_list **stack_b);
 

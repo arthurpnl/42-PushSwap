@@ -64,37 +64,42 @@ void	rotate_a_target_position(t_list **stack_a, int value_to_insert)
 	}
 }
 
-void	final_sort_stack_a(t_list **stack_a)
+t_list	*find_min_node(t_list *stack, int *min_pos)
 {
 	t_list	*current;
 	t_list	*min;
-	int		min_pos;
-	int		current_pos;
-	int		size;
+	int		position;
 
-	current = *stack_a;
-	min = *stack_a;
-	min_pos = 0;
-	current_pos = 0;
-	// Trouve la position exacte du minimum
+	current = stack;
+	min = stack;
+	*min_pos = 0;
+	position = 0;
 	while (current)
 	{
 		if (current->value < min->value)
 		{
 			min = current;
-			min_pos = current_pos;
+			*min_pos = position;
 		}
 		current = current->next;
-		current_pos++;
+		position++;
 	}
+	return (min);
+}
+
+void	final_sort_stack_a(t_list **stack_a)
+{
+	t_list	*min;
+	int		min_pos;
+	int		size;
+
+	min = find_min_node(*stack_a, &min_pos);
 	size = stack_lenght(*stack_a);
-	// Si minimum est dans la première moitié, utilise RA
 	if (min_pos <= size / 2)
 	{
 		while (*stack_a != min)
 			ra(stack_a);
 	}
-	// Sinon utilise RRA
 	else
 	{
 		while (*stack_a != min)
@@ -104,12 +109,12 @@ void	final_sort_stack_a(t_list **stack_a)
 
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
+	t_list	*current;
+
 	push_initial_elements(stack_a, stack_b);
 	while (stack_lenght(*stack_a) > 3)
 	{
 		init_index_n_median(*stack_a, *stack_b);
-		t_list *current;
-
 		current = *stack_a;
 		while (current)
 		{
