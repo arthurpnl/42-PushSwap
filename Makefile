@@ -1,28 +1,49 @@
-NAME	= push_swap
+NAME = push_swap
 
-CC		= gcc
+CC = gcc
+FLAGS = -g3 -Wall -Wextra -Werror
+RM = rm -f
+INCLUDES = -I ./includes
 
-FLAGS	= -Wall -Wextra -Werror
+FILES = argv_check_utils \
+		init_utils \
+		move_b \
+		sort_utils \
+		stack_operations \
+		cost_utils \
+		main \
+		parse_argument \
+		split \
+		targeting \
+		final_sort \
+		move_ab \
+		rotation \
+		stack_moves_a \
+		utils \
+		free_utils \
+		move_a \
+		simple_sort \
+		stack_moves_b
 
-RM		= rm -f
+SRCS = $(addprefix src/, $(addsuffix .c, $(FILES)))
+OBJS = $(addprefix src/, $(addsuffix .o, $(FILES)))
 
-FILES	= $(wildcard src/*.c)
+# === RULES ===
+all: $(NAME)
 
-OBJS	= $(FILES:.c=.o)
+$(NAME): $(OBJS)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS)
 
-.c.o:
-	@$(CC) $(FLAGS) -c $< -o $@ -I ./include
+src/%.o: src/%.c
+	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME):	$(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-all :		$(NAME)
+clean:
+	$(RM) $(OBJS)
 
-clean :
-			@$(RM) $(OBJS)
+fclean: clean
+	$(RM) $(NAME)
 
-fclean :	clean
-			@$(RM) $(NAME)
+re: fclean all
 
-re:			fclean all
+.PHONY: all clean fclean re
 
-.PHONY:		all clean fclean re
