@@ -6,12 +6,22 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:45:15 by arpenel           #+#    #+#             */
-/*   Updated: 2025/04/25 15:31:27 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/29 13:49:47 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+
+int ft_strlen(char *str) 
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 int	ft_atoi(const char *nptr)
 {

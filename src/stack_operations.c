@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:29:00 by arpenel           #+#    #+#             */
-/*   Updated: 2025/04/25 15:24:02 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/29 11:56:29 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ t_list	*fill_stack(char **numbers)
 	i = 0;
 	while (numbers[i])
 	{
-		value = validate_and_convert(numbers[i]);
+		value = validate_and_convert(stack_a, numbers, numbers[i]);
 		if (value_exist_already(&stack_a, value))
-			perror_and_exit();
+			(free_split(numbers), free_stack(stack_a), perror_and_exit());
 		new_node = ft_lstnew(value);
 		if (!stack_a)
 			stack_a = new_node;

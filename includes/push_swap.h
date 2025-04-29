@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 15:29:24 by arpenel           #+#    #+#             */
-/*   Updated: 2025/04/28 13:53:40 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/29 14:11:58 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ typedef struct s_list
 // Parse Argument //
 t_list				*parse_argument(char *test_case);
 t_list				*control_args(int argc, char **argv);
-char				**handle_single_argument(char *test_case);
+// char				**handle_single_argument(char *test_case);
 char				**split_arguments(char *test_case);
 
 // Argv Check Utils //
 int					is_valid_number(char *str);
-int					is_there_space(char *str);
-int					validate_and_convert(char *test_case);
+// int					is_there_space(char *str);
+int					validate_and_convert(t_list *stack_a, char **numbers, char *test_case);
 
 // Stack Operations //
 t_list				*fill_stack(char **numbers);
@@ -123,6 +123,7 @@ void				free_split(char **split);
 char				**ft_split(const char *s, char sep);
 
 // Utils //
+int 				ft_strlen(char *str);
 int					ft_atoi(const char *nptr);
 void				*ft_calloc(size_t nmemb, size_t size);
 void				perror_and_exit(void);

@@ -6,7 +6,7 @@
 /*   By: arpenel <arpenel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 14:35:11 by arpenel           #+#    #+#             */
-/*   Updated: 2025/04/25 15:07:29 by arpenel          ###   ########.fr       */
+/*   Updated: 2025/04/29 14:01:13 by arpenel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		return (1);
 	stack_len = stack_lenght(stack_a);
 	if (stack_len == 1)
-		return (0);
+		return (free_stack(stack_a), 0);
 	else if (stack_len == 2)
 		simple_sort_2(&stack_a);
 	else if (stack_len == 3)
